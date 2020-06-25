@@ -1,6 +1,9 @@
 defmodule PhoenixBlog.Post do
   use Ecto.Schema
-  import Ecto.Changeset
+  import Ecto.{
+    Changeset,
+    Query
+  }
 
   schema "posts" do
     field :content, :string
@@ -14,5 +17,10 @@ defmodule PhoenixBlog.Post do
     post
     |> cast(attrs, [:content, :title])
     |> validate_required([:content, :title])
+  end
+
+  def ordered(query) do
+    query
+    |> order_by([desc: :inserted_at])
   end
 end

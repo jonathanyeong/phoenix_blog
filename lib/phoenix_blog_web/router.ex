@@ -16,7 +16,8 @@ defmodule PhoenixBlogWeb.Router do
   scope "/", PhoenixBlogWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", PostController, :index
+    resources "/posts", PostController
   end
 
   # Other scopes may use custom stacks.
