@@ -7,16 +7,6 @@
   <%= text_input f, :title %>
 
   <label>
-    Published?:
-  </label>
-  <%= checkbox f, :is_published %>
-
-  <label>
-    Publish date:
-  </label>
-  <%= datetime_select f, :publish_date %>
-
-  <label>
     Content:
   </label>
   <%= textarea f, :content %>

@@ -16,7 +16,7 @@ defmodule PhoenixBlogWeb.PostController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"post" => post_params} = params) do
+  def create(conn, %{"post" => post_params} = _params) do
     changeset = Post.changeset(%Post{}, post_params)
     case Repo.insert(changeset) do
       {:ok, _log} ->
