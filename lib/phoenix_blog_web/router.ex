@@ -20,7 +20,7 @@ defmodule PhoenixBlogWeb.Router do
     pipe_through :browser
 
     get "/", PostController, :index
-    resources "/posts", PostController
+    resources "/posts", PostController, only: [:show, :index]
   end
 
   # Other scopes may use custom stacks.
@@ -71,5 +71,10 @@ defmodule PhoenixBlogWeb.Router do
     pipe_through [:browser]
 
     delete "/admin/log_out", AdminSessionController, :delete
+  end
+
+  scope "/admin", PhoenixBlogWeb, as: :admin do
+    pipe_through [:browser, :require_authenticated_admin]
+    resources "/posts", PostController, except: [:index, :show]
   end
 end

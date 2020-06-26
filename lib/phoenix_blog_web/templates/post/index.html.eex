@@ -1,5 +1,4 @@
 <h1>Blog Post</h1>
-<%= link "+ Add new post", to: Routes.post_path(@conn, :new) %>
 <%= for post <- @posts do %>
 <h2><%= post.title %></h2>
 <p><%= as_html(post.content) %></p>
