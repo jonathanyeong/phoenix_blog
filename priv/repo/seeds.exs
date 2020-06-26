@@ -9,3 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+# Seeding admin
+alias PhoenixBlog.Accounts
+Accounts.register_admin(%{"email" => "test@example.com", "password" => "password1234"})

@@ -21,6 +21,5 @@
 <% end %>
 
 <p>
-  <%= link "Register", to: Routes.admin_registration_path(@conn, :new) %> |
   <%= link "Log in", to: Routes.admin_session_path(@conn, :new) %>
 </p>

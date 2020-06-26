@@ -49,31 +49,27 @@ defmodule PhoenixBlogWeb.Router do
   scope "/", PhoenixBlogWeb do
     pipe_through [:browser, :redirect_if_admin_is_authenticated]
 
-    get "/admins/register", AdminRegistrationController, :new
-    post "/admins/register", AdminRegistrationController, :create
-    get "/admins/log_in", AdminSessionController, :new
-    post "/admins/log_in", AdminSessionController, :create
-    get "/admins/reset_password", AdminResetPasswordController, :new
-    post "/admins/reset_password", AdminResetPasswordController, :create
-    get "/admins/reset_password/:token", AdminResetPasswordController, :edit
-    put "/admins/reset_password/:token", AdminResetPasswordController, :update
+    get "/admin/log_in", AdminSessionController, :new
+    post "/admin/log_in", AdminSessionController, :create
+    get "/admin/reset_password", AdminResetPasswordController, :new
+    post "/admin/reset_password", AdminResetPasswordController, :create
+    get "/admin/reset_password/:token", AdminResetPasswordController, :edit
+    put "/admin/reset_password/:token", AdminResetPasswordController, :update
   end
 
   scope "/", PhoenixBlogWeb do
     pipe_through [:browser, :require_authenticated_admin]
 
-    get "/admins/settings", AdminSettingsController, :edit
-    put "/admins/settings/update_password", AdminSettingsController, :update_password
-    put "/admins/settings/update_email", AdminSettingsController, :update_email
-    get "/admins/settings/confirm_email/:token", AdminSettingsController, :confirm_email
+    get "/admin", AdminDashboardController, :index
+    get "/admin/settings", AdminSettingsController, :edit
+    put "/admin/settings/update_password", AdminSettingsController, :update_password
+    put "/admin/settings/update_email", AdminSettingsController, :update_email
+    get "/admin/settings/confirm_email/:token", AdminSettingsController, :confirm_email
   end
 
   scope "/", PhoenixBlogWeb do
     pipe_through [:browser]
 
-    delete "/admins/log_out", AdminSessionController, :delete
-    get "/admins/confirm", AdminConfirmationController, :new
-    post "/admins/confirm", AdminConfirmationController, :create
-    get "/admins/confirm/:token", AdminConfirmationController, :confirm
+    delete "/admin/log_out", AdminSessionController, :delete
   end
 end
