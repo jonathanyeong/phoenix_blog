@@ -1,5 +1,6 @@
 /* This file is for your main application css. */
 @import "./phoenix.css";
+@import "../node_modules/easymde/dist/easymde.min.css";
 
 /* Alerts and form errors */
 .alert {
@@ -28,4 +29,9 @@
 }
 .alert:empty {
   display: none;
+}
+
+.editor-toolbar button {
+  color: #212529;
+  font-size: 1.6rem;
 }

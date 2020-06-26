@@ -13,3 +13,9 @@ import "../css/app.scss"
 //     import socket from "./socket"
 //
 import "phoenix_html"
+import EasyMDE from "easymde"
+if (document.getElementById("post_content")) {
+  var easyMde = new EasyMDE({
+    element: document.getElementById("post_content")
+  });
+}
