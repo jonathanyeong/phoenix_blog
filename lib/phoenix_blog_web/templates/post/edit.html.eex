@@ -1,0 +1,15 @@
+<h1>Edit Blog Post</h1>
+
+<%= form_for @changeset, Routes.admin_post_path(@conn, :update, @post.id), fn f -> %>
+  <label>
+    title:
+  </label>
+  <%= text_input f, :title %>
+
+  <label>
+    Content:
+  </label>
+  <%= textarea f, :content %>
+
+  <%= submit "Submit!" %>
+<% end %>

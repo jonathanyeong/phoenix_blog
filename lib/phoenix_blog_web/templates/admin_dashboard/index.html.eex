@@ -1,1 +1,14 @@
 <%= link "+ Add new post", to: Routes.admin_post_path(@conn, :new) %>
+<h1>Blog Posts</h1>
+<table>
+  <tr>
+    <th>Post Title</th>
+    <th>Published?</th>
+  </tr>
+  <%= for post <- @posts do %>
+    <tr>
+      <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post.id) %></td>
+      <td></td>
+    </tr>
+  <% end %>
+</table>
