@@ -12,4 +12,5 @@
   <%= textarea f, :content %>
 
   <%= submit "Submit!" %>
+  <%= link "Back to Dashboard", to: Routes.admin_dashboard_path(@conn, :index), class: "button"%>
 <% end %>

@@ -35,4 +35,19 @@ defmodule PhoenixBlogWeb.PostController do
     changeset = Post.changeset(post, %{})
     render(conn, "edit.html", changeset: changeset, post: post)
   end
+
+  def update(conn, %{"post" => post_params, "id" => id} = params) do
+    post = Repo.get!(Post, String.to_integer(id))
+    changeset = Post.changeset(post, post_params)
+    case Repo.update(changeset) do
+      {:ok, _log} ->
+        conn
+        |> put_flash(:info, "Success - created a Post!")
+        |> render(:edit, changeset: changeset, post: post)
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "failure couldn't create post")
+        |> render(:edit, changeset: changeset, post: post)
+    end
+  end
 end
