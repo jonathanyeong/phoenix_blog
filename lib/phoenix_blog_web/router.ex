@@ -16,6 +16,10 @@ defmodule PhoenixBlogWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug :put_layout, {PhoenixBlogWeb.LayoutView, "admin.html"}
+  end
+
   scope "/", PhoenixBlogWeb do
     pipe_through :browser
 
@@ -47,7 +51,7 @@ defmodule PhoenixBlogWeb.Router do
   ## Authentication routes
 
   scope "/", PhoenixBlogWeb do
-    pipe_through [:browser, :redirect_if_admin_is_authenticated]
+    pipe_through [:browser, :redirect_if_admin_is_authenticated, :admin]
 
     get "/admin/log_in", AdminSessionController, :new
     post "/admin/log_in", AdminSessionController, :create
@@ -58,7 +62,7 @@ defmodule PhoenixBlogWeb.Router do
   end
 
   scope "/", PhoenixBlogWeb do
-    pipe_through [:browser, :require_authenticated_admin]
+    pipe_through [:browser, :require_authenticated_admin, :admin]
 
     get "/admin", AdminDashboardController, :index
     get "/admin/settings", AdminSettingsController, :edit
@@ -74,7 +78,7 @@ defmodule PhoenixBlogWeb.Router do
   end
 
   scope "/admin", PhoenixBlogWeb, as: :admin do
-    pipe_through [:browser, :require_authenticated_admin]
+    pipe_through [:browser, :require_authenticated_admin, :admin]
     resources "/posts", PostController, except: [:index, :show]
   end
 end
