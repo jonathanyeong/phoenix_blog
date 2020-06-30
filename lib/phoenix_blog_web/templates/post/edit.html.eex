@@ -3,3 +3,5 @@
 <%= form_for @changeset, Routes.admin_post_path(@conn, :update, @post.id), fn f -> %>
   <%= render "_post_form.html", conn: @conn, post: f %>
 <% end %>
+
+<td><%= link "View Post", to: Routes.post_path(@conn, :show, @post.id) %></td>
