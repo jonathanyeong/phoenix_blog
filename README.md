@@ -1,4 +1,4 @@
-# Jonathan Yeong
+# Personal blog of Jonathan Yeong
 
 This is my personal blog written in phoenix. It (will) contain an admin dashboard to write and manage posts.
 
