@@ -8,7 +8,7 @@
   <%= for post <- @posts do %>
     <tr>
       <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post.id) %></td>
-      <td></td>
+      <td><%= post.is_published %></td>
     </tr>
   <% end %>
 </table>
