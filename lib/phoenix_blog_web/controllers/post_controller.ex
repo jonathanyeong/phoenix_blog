@@ -57,4 +57,9 @@ defmodule PhoenixBlogWeb.PostController do
         |> render(:edit, changeset: changeset, post: post)
     end
   end
+
+  def show(conn, %{"id" => id} = _params) do
+    post = Repo.get!(Post, id)
+    render(conn, "show.html", post: post)
+  end
 end

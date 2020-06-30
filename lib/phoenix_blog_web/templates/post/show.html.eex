@@ -1,0 +1,7 @@
+<h1><%= @post.title %></h1>
+<div>
+  <%= @post.content %>
+</div>
+
+<hr />
+<%= link "Back to all posts", to: Routes.post_path(@conn, :index), class: "button" %>
