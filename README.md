@@ -17,7 +17,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 User authentication was generated through the `phx_gen_auth` package.
 
-Assuming seeds have been run, you should navigate to `http://localhost:4000/admin` which will direct you to login.
+Assuming seeds have been run, you should navigate to [`localhost:4000/admin`](http://localhost:4000/admin) which will direct you to login.
 
 The user to login is:
 
