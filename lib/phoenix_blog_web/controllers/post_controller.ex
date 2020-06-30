@@ -7,7 +7,10 @@ defmodule PhoenixBlogWeb.PostController do
   }
 
   def index(conn, _params) do
-    posts = Post |> Post.ordered() |> Repo.all()
+    posts =
+      Post
+      |> Post.ordered()
+      |> Repo.all()
     render(conn, "index.html", posts: posts)
   end
 
@@ -31,8 +34,11 @@ defmodule PhoenixBlogWeb.PostController do
   end
 
   def edit(conn, %{"id" => id} = _params) do
-    post = Repo.get!(Post, String.to_integer(id))
-    changeset = Post.changeset(post, %{})
+    post = Repo.get!(Post, id)
+    changeset =
+      Post
+      |> Repo.get!(id)
+      |> Post.changeset(%{})
     render(conn, "edit.html", changeset: changeset, post: post)
   end
 
