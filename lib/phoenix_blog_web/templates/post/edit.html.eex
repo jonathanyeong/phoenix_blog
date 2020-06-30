@@ -1,16 +1,5 @@
 <h1>Edit Blog Post</h1>
 
 <%= form_for @changeset, Routes.admin_post_path(@conn, :update, @post.id), fn f -> %>
-  <label>
-    title:
-  </label>
-  <%= text_input f, :title %>
-
-  <label>
-    Content:
-  </label>
-  <%= textarea f, :content %>
-
-  <%= submit "Submit!" %>
-  <%= link "Back to Dashboard", to: Routes.admin_dashboard_path(@conn, :index), class: "button"%>
+  <%= render "_post_form.html", conn: @conn, post: f %>
 <% end %>
