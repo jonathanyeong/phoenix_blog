@@ -8,6 +8,7 @@ defmodule PhoenixBlog.Post do
   schema "posts" do
     field :content, :string
     field :title, :string
+    field :is_published, :boolean
 
     timestamps()
   end
@@ -15,8 +16,8 @@ defmodule PhoenixBlog.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:content, :title])
-    |> validate_required([:content, :title])
+    |> cast(attrs, [:content, :title, :is_published])
+    |> validate_required([:content, :title, :is_published])
   end
 
   def ordered(query) do
