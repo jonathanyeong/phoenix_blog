@@ -24,4 +24,9 @@ defmodule PhoenixBlog.Post do
     query
     |> order_by([desc: :inserted_at])
   end
+
+  def published(query) do
+    query
+    |> where(is_published: true )
+  end
 end
