@@ -26,7 +26,7 @@ defmodule PhoenixBlogWeb.PostController do
       {:ok, _log} ->
         conn
         |> put_flash(:info, "Success - created a Post!")
-        |> redirect(to: Routes.post_path(conn, :index))
+        |> redirect(to: Routes.admin_dashboard_path(conn, :index))
       {:error, changeset} ->
         conn
         |> put_flash(:error, "failure couldn't create post")

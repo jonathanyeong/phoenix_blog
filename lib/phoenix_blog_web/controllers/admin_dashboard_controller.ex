@@ -7,7 +7,10 @@ defmodule PhoenixBlogWeb.AdminDashboardController do
   }
 
   def index(conn, _params) do
-    posts = Post |> Post.ordered() |> Repo.all()
+    posts =
+      Post
+      |> Post.ordered()
+      |> Repo.all()
     render(conn, "index.html", posts: posts)
   end
 end
