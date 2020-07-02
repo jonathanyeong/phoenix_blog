@@ -10,7 +10,7 @@ config :bcrypt_elixir, :log_rounds, 1
 # Run `mix help test` for more information.
 config :phoenix_blog, PhoenixBlog.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "localhost",
   database: "phoenix_blog_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

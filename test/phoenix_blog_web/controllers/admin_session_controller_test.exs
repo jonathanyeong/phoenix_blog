@@ -13,7 +13,6 @@ defmodule PhoenixBlogWeb.AdminSessionControllerTest do
       response = html_response(conn, 200)
       assert response =~ "<h1>Log in</h1>"
       assert response =~ "Log in</a>"
-      assert response =~ "Register</a>"
     end
 
     test "redirects if already logged in", %{conn: conn, admin: admin} do
@@ -23,23 +22,6 @@ defmodule PhoenixBlogWeb.AdminSessionControllerTest do
   end
 
   describe "POST /admins/log_in" do
-    test "logs the admin in", %{conn: conn, admin: admin} do
-      conn =
-        post(conn, Routes.admin_session_path(conn, :create), %{
-          "admin" => %{"email" => admin.email, "password" => valid_admin_password()}
-        })
-
-      assert get_session(conn, :admin_token)
-      assert redirected_to(conn) =~ "/"
-
-      # Now do a logged in request and assert on the menu
-      conn = get(conn, "/")
-      response = html_response(conn, 200)
-      assert response =~ admin.email
-      assert response =~ "Settings</a>"
-      assert response =~ "Log out</a>"
-    end
-
     test "logs the admin in with remember me", %{conn: conn, admin: admin} do
       conn =
         post(conn, Routes.admin_session_path(conn, :create), %{

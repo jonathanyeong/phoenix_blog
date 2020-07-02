@@ -42,7 +42,7 @@ defmodule PhoenixBlogWeb.PostController do
     render(conn, "edit.html", changeset: changeset, post: post)
   end
 
-  def update(conn, %{"post" => post_params, "id" => id} = params) do
+  def update(conn, %{"post" => post_params, "id" => id} = _params) do
     post = Repo.get!(Post, id)
     changeset = Post.changeset(post, post_params)
     case Repo.update(changeset) do
