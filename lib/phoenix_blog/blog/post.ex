@@ -1,4 +1,4 @@
-defmodule PhoenixBlog.Post do
+defmodule PhoenixBlog.Blog.Post do
   use Ecto.Schema
   import Ecto.{
     Changeset,

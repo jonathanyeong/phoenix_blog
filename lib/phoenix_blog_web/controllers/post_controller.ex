@@ -1,28 +1,21 @@
 defmodule PhoenixBlogWeb.PostController do
   use PhoenixBlogWeb, :controller
 
-  alias PhoenixBlog.{
-    Post,
-    Repo
-  }
+  alias PhoenixBlog.Blog
+  alias PhoenixBlog.Blog.Post
 
   def index(conn, _params) do
-    posts =
-      Post
-      |> Post.published()
-      |> Post.ordered()
-      |> Repo.all()
+    posts = Blog.list_posts()
     render(conn, "index.html", posts: posts)
   end
 
   def new(conn, _params) do
-    changeset = Post.changeset(%Post{}, %{})
+    changeset = Blog.change_post(%Post{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"post" => post_params} = _params) do
-    changeset = Post.changeset(%Post{}, post_params)
-    case Repo.insert(changeset) do
+    case Blog.create_post(post_params) do
       {:ok, _log} ->
         conn
         |> put_flash(:info, "Success - created a Post!")
@@ -35,20 +28,18 @@ defmodule PhoenixBlogWeb.PostController do
   end
 
   def edit(conn, %{"id" => id} = _params) do
-    post = Repo.get!(Post, id)
-    changeset =
-      post
-      |> Post.changeset(%{})
+    post = Blog.get_post!(id)
+    changeset = Blog.change_post(post)
     render(conn, "edit.html", changeset: changeset, post: post)
   end
 
   def update(conn, %{"post" => post_params, "id" => id} = _params) do
-    post = Repo.get!(Post, id)
-    changeset = Post.changeset(post, post_params)
-    case Repo.update(changeset) do
+    post = Blog.get_post!(id)
+    changeset = Blog.change_post(post, post_params)
+    case Blog.update_post(post, post_params) do
       {:ok, _log} ->
         conn
-        |> put_flash(:info, "Success - created a Post!")
+        |> put_flash(:info, "Success - Updated a Post!")
         |> render(:edit, changeset: changeset, post: post)
       {:error, changeset} ->
         conn
@@ -58,7 +49,7 @@ defmodule PhoenixBlogWeb.PostController do
   end
 
   def show(conn, %{"id" => id} = _params) do
-    post = Repo.get!(Post, id)
+    post = Blog.get_post!(id)
     render(conn, "show.html", post: post)
   end
 end
