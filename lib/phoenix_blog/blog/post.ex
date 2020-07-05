@@ -9,7 +9,7 @@ defmodule PhoenixBlog.Blog.Post do
     field :content, :string
     field :title, :string
     field :is_published, :boolean
-
+    field :slug, :string, unique: true
     timestamps()
   end
 
@@ -28,5 +28,12 @@ defmodule PhoenixBlog.Blog.Post do
   def published(query) do
     query
     |> where(is_published: true )
+  end
+
+  def slugify(title) do
+    title
+    |> String.downcase
+    |> String.replace(~r/[^a-z0-9\s-]/, "")
+    |> String.replace(~r/(\s|-)+/, "-")
   end
 end
