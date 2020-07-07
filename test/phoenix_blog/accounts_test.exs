@@ -477,4 +477,11 @@ defmodule PhoenixBlog.AccountsTest do
       refute inspect(%Admin{password: "123456"}) =~ "password: \"123456\""
     end
   end
+
+  describe "change_admin_timezone/2" do
+    test "returns a admin changeset" do
+      assert %Ecto.Changeset{} = changeset = Accounts.change_admin_timezone(%Admin{})
+      assert changeset.required == [:timezone]
+    end
+  end
 end
