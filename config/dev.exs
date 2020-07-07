@@ -1,5 +1,6 @@
 use Mix.Config
 
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 # Configure your database
 config :phoenix_blog, PhoenixBlog.Repo,
   username: "postgres",
