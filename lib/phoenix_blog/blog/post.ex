@@ -12,6 +12,7 @@ defmodule PhoenixBlog.Blog.Post do
     field :title, :string
     field :is_published, :boolean
     field :slug, :string, unique: true
+    field :published_at, :utc_datetime
     timestamps()
   end
 
@@ -19,7 +20,7 @@ defmodule PhoenixBlog.Blog.Post do
   def changeset(post, attrs) do
     attrs = Map.merge(attrs, slug_map(attrs))
     post
-    |> cast(attrs, [:content, :title, :is_published, :slug])
+    |> cast(attrs, [:content, :title, :is_published, :slug, :published_at])
     |> validate_required([:content, :title, :is_published])
   end
 

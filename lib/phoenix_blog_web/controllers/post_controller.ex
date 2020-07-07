@@ -11,7 +11,8 @@ defmodule PhoenixBlogWeb.PostController do
 
   def new(conn, _params) do
     changeset = Blog.change_post(%Post{})
-    render(conn, "new.html", changeset: changeset)
+    admin = conn.assigns.current_admin
+    render(conn, "new.html", changeset: changeset, admin: admin)
   end
 
   def create(conn, %{"post" => post_params} = _params) do
@@ -30,7 +31,8 @@ defmodule PhoenixBlogWeb.PostController do
   def edit(conn, %{"id" => id} = _params) do
     post = Blog.get_post!(id)
     changeset = Blog.change_post(post)
-    render(conn, "edit.html", changeset: changeset, post: post)
+    admin = conn.assigns.current_admin
+    render(conn, "edit.html", changeset: changeset, post: post, admin: admin)
   end
 
   def update(conn, %{"post" => post_params, "id" => id} = _params) do

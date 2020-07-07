@@ -6,4 +6,8 @@ defmodule PhoenixBlogWeb.PostView do
     |> Earmark.as_html!
     |> raw
   end
+
+  def current_datetime(admin) do
+    DateTime.now!(admin.timezone)
+  end
 end
