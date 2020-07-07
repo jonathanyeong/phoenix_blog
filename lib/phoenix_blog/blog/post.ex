@@ -5,6 +5,8 @@ defmodule PhoenixBlog.Blog.Post do
     Query
   }
 
+  @derive {Phoenix.Param, key: :slug}
+
   schema "posts" do
     field :content, :string
     field :title, :string
@@ -15,8 +17,9 @@ defmodule PhoenixBlog.Blog.Post do
 
   @doc false
   def changeset(post, attrs) do
+    attrs = Map.merge(attrs, slug_map(attrs))
     post
-    |> cast(attrs, [:content, :title, :is_published])
+    |> cast(attrs, [:content, :title, :is_published, :slug])
     |> validate_required([:content, :title, :is_published])
   end
 
@@ -30,10 +33,15 @@ defmodule PhoenixBlog.Blog.Post do
     |> where(is_published: true )
   end
 
-  def slugify(title) do
-    title
-    |> String.downcase
-    |> String.replace(~r/[^a-z0-9\s-]/, "")
-    |> String.replace(~r/(\s|-)+/, "-")
+  defp slug_map(%{"title" => title}) do
+    slug = String.downcase("#{title}") # Using string interpolation to handle the nil case
+           |> String.replace(~r/[^a-z0-9\s-]/, "")
+           |> String.replace(~r/(\s|-)+/, "-")
+    %{"slug" => slug}
+  end
+
+  # To handle the new route
+  defp slug_map(_params) do
+    %{}
   end
 end

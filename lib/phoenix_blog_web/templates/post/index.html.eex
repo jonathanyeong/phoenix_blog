@@ -1,4 +1,4 @@
 <h1>Blog Post</h1>
 <%= for post <- @posts do %>
-<h2><%= link post.title, to: Routes.post_path(@conn, :show, post.id) %></h2>
+<h2><%= link post.title, to: Routes.post_path(@conn, :show, post) %></h2>
 <% end %>

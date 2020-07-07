@@ -8,9 +8,9 @@
   </tr>
   <%= for post <- @posts do %>
     <tr>
-      <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post.id) %></td>
+      <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post) %></td>
       <td><%= post.is_published %></td>
-      <td><%= link "View", to: Routes.post_path(@conn, :show, post.id) %></td>
+      <td><%= link "View", to: Routes.post_path(@conn, :show, post) %></td>
     </tr>
   <% end %>
 </table>

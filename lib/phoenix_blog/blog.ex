@@ -41,7 +41,7 @@ defmodule PhoenixBlog.Blog do
 
   """
   def get_post!(id) do
-    Repo.get!(Post, id)
+    Repo.get_by!(Post, slug: id)
   end
 
   @doc """
@@ -56,7 +56,6 @@ defmodule PhoenixBlog.Blog do
       {:error, ...}
 
   """
-  # This is pulled from the Post Controller. I'll be moving the Post controller logic into the Context.
   def create_post(attrs \\ %{}) do
     %Post{}
     |> Post.changeset(attrs)
