@@ -8,6 +8,7 @@ defmodule PhoenixBlog.Accounts.Admin do
     field :password, :string, virtual: true
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
+    field :timezone, :string
 
     timestamps()
   end
@@ -22,7 +23,7 @@ defmodule PhoenixBlog.Accounts.Admin do
   """
   def registration_changeset(admin, attrs) do
     admin
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :timezone])
     |> validate_email()
     |> validate_password()
   end
@@ -77,6 +78,15 @@ defmodule PhoenixBlog.Accounts.Admin do
     |> cast(attrs, [:password])
     |> validate_confirmation(:password, message: "does not match password")
     |> validate_password()
+  end
+
+  @doc """
+  A admin changeset for changing the timezone.
+  """
+  def timezone_changeset(admin, attrs) do
+    admin
+    |> cast(attrs, [:timezone])
+    |> validate_required([:timezone])
   end
 
   @doc """
