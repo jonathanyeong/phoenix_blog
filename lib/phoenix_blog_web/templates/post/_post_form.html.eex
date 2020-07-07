@@ -4,6 +4,10 @@
 <%= checkbox @post, :is_published %>
 
 <label>
+  Slug: <%= text_input @post, :slug, disabled: true %>
+</label>
+
+<label>
   title:
 </label>
 <%= text_input @post, :title %>
