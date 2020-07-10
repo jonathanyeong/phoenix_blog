@@ -1,5 +1,5 @@
 <h1><%= @post.title %></h1>
-<strong><%= @post.published_at%></strong>
+<strong><%= readable_date(@post.published_at)%></strong>
 <div>
   <%= @post.content %>
 </div>

@@ -1,5 +1,6 @@
 defmodule PhoenixBlogWeb.AdminSettingsController do
   use PhoenixBlogWeb, :controller
+  use Timex
 
   alias PhoenixBlog.Accounts
   alias PhoenixBlogWeb.AdminAuth
@@ -90,6 +91,6 @@ defmodule PhoenixBlogWeb.AdminSettingsController do
     admin = conn.assigns.current_admin
     conn
     |> assign(:timezone_changeset, Accounts.change_admin_timezone(admin))
-    |> assign(:timezones, Tzdata.zone_list())
+    |> assign(:timezones, Timex.timezones())
   end
 end
