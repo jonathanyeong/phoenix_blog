@@ -48,6 +48,7 @@ defmodule PhoenixBlog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:earmark, "~> 1.4"},
       {:timex, "~> 3.5"},
+      {:ecto_enum, "~> 1.4"},
       {:phx_gen_auth, "~> 0.4.0", only: [:dev], runtime: false}
     ]
   end

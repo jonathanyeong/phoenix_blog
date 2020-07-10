@@ -4,8 +4,10 @@ defmodule PhoenixBlog.Blog.Post do
     Changeset,
     Query
   }
+  import EctoEnum
 
   @derive {Phoenix.Param, key: :slug}
+  defenum TypeEnum, post: 0, page: 1
 
   schema "posts" do
     field :content, :string
@@ -13,6 +15,7 @@ defmodule PhoenixBlog.Blog.Post do
     field :is_published, :boolean
     field :slug, :string, unique: true
     field :published_at, :utc_datetime
+    field :type, TypeEnum
     timestamps()
   end
 
@@ -20,7 +23,7 @@ defmodule PhoenixBlog.Blog.Post do
   def changeset(post, attrs) do
     attrs = Map.merge(attrs, slug_map(attrs))
     post
-    |> cast(attrs, [:content, :title, :is_published, :slug, :published_at])
+    |> cast(attrs, [:content, :title, :is_published, :slug, :published_at, :type])
     |> validate_required([:content, :title, :is_published, :published_at])
   end
 
