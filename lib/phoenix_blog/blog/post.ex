@@ -31,7 +31,7 @@ defmodule PhoenixBlog.Blog.Post do
 
   def published(query) do
     query
-    |> where(is_published: true )
+    |> where(is_published: true)
   end
 
   defp slug_map(%{"title" => title}) do

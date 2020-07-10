@@ -50,6 +50,13 @@ defmodule PhoenixBlogWeb.PostController do
 
   def show(conn, %{"id" => id} = _params) do
     post = Blog.get_post!(id)
-    render(conn, "show.html", post: post)
+    current_admin = conn.assigns[:current_admin]
+    if post.is_published || current_admin do
+      render(conn, "show.html", post: post)
+    else
+      conn
+      |> put_flash(:error, "No post found")
+      |> redirect(to: "/posts")
+    end
   end
 end
