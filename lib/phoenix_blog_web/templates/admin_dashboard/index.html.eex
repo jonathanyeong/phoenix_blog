@@ -4,7 +4,7 @@
   <tr>
     <th>Post Title</th>
     <th>Published?</th>
-    <th>Publish Date</th>
+    <th>Published At</th>
     <th>View Post</th>
   </tr>
   <%= for post <- @posts do %>

@@ -8,6 +8,6 @@ defmodule PhoenixBlogWeb.PostView do
   end
 
   def current_datetime(admin) do
-    DateTime.now!(admin.timezone)
+    DateTime.now!(admin.timezone || "Etc/UTC")
   end
 end
