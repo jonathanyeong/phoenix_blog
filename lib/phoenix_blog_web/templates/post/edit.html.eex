@@ -1,7 +1,7 @@
 <h1>Edit Blog Post</h1>
 
 <%= form_for @changeset, Routes.admin_post_path(@conn, :update, @post), fn f -> %>
-  <%= render "_post_form.html", conn: @conn, post: f, admin: @admin %>
+  <%= render "_post_form.html", conn: @conn, post: f, admin: @current_admin %>
 <% end %>
 
 <td><%= link "View Post", to: Routes.post_path(@conn, :show, @post) %></td>

@@ -4,12 +4,14 @@
   <tr>
     <th>Post Title</th>
     <th>Published?</th>
+    <th>Publish Date</th>
     <th>View Post</th>
   </tr>
   <%= for post <- @posts do %>
     <tr>
       <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post) %></td>
       <td><%= post.is_published %></td>
+      <td><%= post.published_at %></td>
       <td><%= link "View", to: Routes.post_path(@conn, :show, post) %></td>
     </tr>
   <% end %>

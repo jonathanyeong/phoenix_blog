@@ -21,7 +21,7 @@ defmodule PhoenixBlog.Blog.Post do
     attrs = Map.merge(attrs, slug_map(attrs))
     post
     |> cast(attrs, [:content, :title, :is_published, :slug, :published_at])
-    |> validate_required([:content, :title, :is_published])
+    |> validate_required([:content, :title, :is_published, :published_at])
   end
 
   def ordered(query) do
