@@ -47,6 +47,7 @@ defmodule PhoenixBlog.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:earmark, "~> 1.4"},
+      {:timex, "~> 3.5"},
       {:phx_gen_auth, "~> 0.4.0", only: [:dev], runtime: false}
     ]
   end

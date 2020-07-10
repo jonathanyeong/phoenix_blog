@@ -1,10 +1,12 @@
 defmodule PhoenixBlogWeb.AdminSettingsController do
   use PhoenixBlogWeb, :controller
+  use Timex
 
   alias PhoenixBlog.Accounts
   alias PhoenixBlogWeb.AdminAuth
 
   plug :assign_email_and_password_changesets
+  plug :assign_timezone_changesets
 
   def edit(conn, _params) do
     render(conn, "edit.html")
@@ -62,11 +64,33 @@ defmodule PhoenixBlogWeb.AdminSettingsController do
     end
   end
 
+  def update_timezone(conn, %{"admin" => admin_params}) do
+    admin = conn.assigns.current_admin
+
+    case Accounts.update_admin_timezone(admin, admin_params) do
+      {:ok, admin} ->
+        conn
+        |> put_flash(:info, "Timezone updated successfully.")
+        |> put_session(:admin_return_to, Routes.admin_settings_path(conn, :edit))
+        |> AdminAuth.log_in_admin(admin)
+
+      {:error, changeset} ->
+        render(conn, "edit.html", timezone_changeset: changeset)
+    end
+  end
+
   defp assign_email_and_password_changesets(conn, _opts) do
     admin = conn.assigns.current_admin
 
     conn
     |> assign(:email_changeset, Accounts.change_admin_email(admin))
     |> assign(:password_changeset, Accounts.change_admin_password(admin))
+  end
+
+  defp assign_timezone_changesets(conn, _opts) do
+    admin = conn.assigns.current_admin
+    conn
+    |> assign(:timezone_changeset, Accounts.change_admin_timezone(admin))
+    |> assign(:timezones, Timex.timezones())
   end
 end

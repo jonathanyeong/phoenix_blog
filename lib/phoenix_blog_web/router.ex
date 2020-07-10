@@ -68,6 +68,7 @@ defmodule PhoenixBlogWeb.Router do
     get "/admin/settings", AdminSettingsController, :edit
     put "/admin/settings/update_password", AdminSettingsController, :update_password
     put "/admin/settings/update_email", AdminSettingsController, :update_email
+    put "/admin/settings/update_timezone", AdminSettingsController, :update_timezone
     get "/admin/settings/confirm_email/:token", AdminSettingsController, :confirm_email
   end
 

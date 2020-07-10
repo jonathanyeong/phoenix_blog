@@ -2,8 +2,7 @@ defmodule PhoenixBlogWeb.AdminDashboardController do
   use PhoenixBlogWeb, :controller
 
   alias PhoenixBlog.{
-    Blog,
-    Repo
+    Blog
   }
 
   def index(conn, _params) do

@@ -47,3 +47,14 @@
     <%= submit "Change password" %>
   </div>
 <% end %>
+
+<h3>Change Timezone</h3>
+<%= form_for @timezone_changeset, Routes.admin_settings_path(@conn, :update_timezone), fn f -> %>
+  <%= label f, :timezone, "Timezone" %>
+  <%= select f, :timezone, @timezones %>
+  <%= error_tag f, :password %>
+
+  <div>
+    <%= submit "Change Timezone" %>
+  </div>
+<% end %>

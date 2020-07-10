@@ -4,6 +4,11 @@
 <%= checkbox @post, :is_published %>
 
 <label>
+  Published Date
+</label>
+<%= datetime_select @post, :published_at, default: current_datetime(@admin) %>
+
+<label>
   Slug: <%= text_input @post, :slug, disabled: true %>
 </label>
 

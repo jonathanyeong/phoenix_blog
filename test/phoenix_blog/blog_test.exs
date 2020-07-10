@@ -1,11 +1,17 @@
 defmodule PhoenixBlog.BlogTest do
   use PhoenixBlog.DataCase
+  use Timex
 
   alias PhoenixBlog.Blog
   describe "posts" do
     alias PhoenixBlog.Blog.Post
 
-    @valid_attrs %{"content" => "some content", "title" => "some title", "is_published" => true}
+    @valid_attrs %{
+      "content" => "some content",
+      "title" => "some title",
+      "is_published" => true,
+      "published_at" => Timex.now()
+    }
     @update_attrs %{"content" => "some updated content", "title" => "some updated title"}
     @invalid_attrs %{"content" => nil, "title" => nil}
 

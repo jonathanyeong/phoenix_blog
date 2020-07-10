@@ -108,6 +108,19 @@ defmodule PhoenixBlog.Accounts do
   end
 
   @doc """
+  Returns an `%Ecto.Changeset{}` for changing the admin timezone.
+  """
+  def change_admin_timezone(admin, attrs \\ %{}) do
+    Admin.timezone_changeset(admin, attrs)
+  end
+
+  def update_admin_timezone(admin, attrs) do
+    admin
+    |> Admin.timezone_changeset(attrs)
+    |> Repo.update
+  end
+
+  @doc """
   Emulates that the e-mail will change without actually changing
   it in the database.
 
