@@ -6,4 +6,8 @@ defmodule PhoenixBlogWeb.AdminDashboardView do
     |> Earmark.as_html!
     |> raw
   end
+
+  def admin_display_date(datetime) do
+    Timex.format!(datetime, "%d %b, %Y %I:%M%p", :strftime)
+  end
 end

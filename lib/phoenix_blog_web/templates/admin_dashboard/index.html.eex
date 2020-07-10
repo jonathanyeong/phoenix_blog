@@ -11,7 +11,7 @@
     <tr>
       <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post) %></td>
       <td><%= post.is_published %></td>
-      <td><%= post.published_at %></td>
+      <td><%= admin_display_date(post.published_at) %></td>
       <td><%= link "View", to: Routes.post_path(@conn, :show, post) %></td>
     </tr>
   <% end %>

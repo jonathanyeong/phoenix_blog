@@ -11,7 +11,7 @@ defmodule PhoenixBlogWeb.PostView do
     Timex.now(admin.timezone || "Etc/UTC")
   end
 
-  def readable_date(datetime) do
+  def post_display_date(datetime) do
     Timex.format!(datetime, "%b %d, %Y", :strftime)
   end
 end
