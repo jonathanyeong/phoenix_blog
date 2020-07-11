@@ -13,10 +13,6 @@
 </label>
 
 <label>
-  Type of Post: <%= select @post, :type, [:post, :page] %>
-</label>
-
-<label>
   title:
 </label>
 <%= text_input @post, :title %>

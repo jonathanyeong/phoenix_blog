@@ -8,8 +8,6 @@ defmodule PhoenixBlogWeb.AdminDashboardView do
   end
 
   def admin_display_date(datetime) do
-    if datetime != nil do
-      Timex.format!(datetime, "%d %b, %Y %I:%M%p", :strftime)
-    end
+    Timex.format!(datetime, "%d %b, %Y %I:%M%p", :strftime)
   end
 end

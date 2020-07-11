@@ -10,18 +10,11 @@ defmodule PhoenixBlog.BlogTest do
       "content" => "some content",
       "title" => "some title",
       "is_published" => true,
-      "published_at" => Timex.now(),
-      "type" => :post
+      "published_at" => Timex.now()
     }
     @update_attrs %{"content" => "some updated content", "title" => "some updated title"}
     @invalid_attrs %{"content" => nil, "title" => nil}
-    @invalid_enum_attrs %{
-      "content" => "some content",
-      "title" => "some title",
-      "is_published" => true,
-      "published_at" => Timex.now(),
-      "type" => :this_is_invalid
-    }
+
 
     def post_fixture(attrs \\ %{}) do
       {:ok, post} =
@@ -54,10 +47,6 @@ defmodule PhoenixBlog.BlogTest do
 
     test "create_post/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Blog.create_post(@invalid_attrs)
-    end
-
-    test "create_post/1 with invalid enum returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Blog.create_post(@invalid_enum_attrs)
     end
 
     test "update_post/2 with valid data updates the post" do
