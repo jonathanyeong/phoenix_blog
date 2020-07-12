@@ -1,5 +1,6 @@
 defmodule PhoenixBlogWeb.PostController do
   use PhoenixBlogWeb, :controller
+  import Phoenix.HTML.Link
 
   alias PhoenixBlog.Blog
   alias PhoenixBlog.Blog.Post
@@ -16,9 +17,9 @@ defmodule PhoenixBlogWeb.PostController do
 
   def create(conn, %{"post" => post_params} = _params) do
     case Blog.create_post(post_params) do
-      {:ok, _log} ->
+      {:ok, post} ->
         conn
-        |> put_flash(:info, "Success - created a Post!")
+        |> put_flash(:info, ["Saved Post! ", link("Preview Post", to: Routes.post_path(conn, :show, post))])
         |> redirect(to: Routes.admin_dashboard_path(conn, :index))
       {:error, changeset} ->
         conn
