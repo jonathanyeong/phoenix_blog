@@ -19,11 +19,11 @@ defmodule PhoenixBlogWeb.PostController do
     case Blog.create_post(post_params) do
       {:ok, post} ->
         conn
-        |> put_flash(:info, ["Saved Post! ", link("Preview Post", to: Routes.post_path(conn, :show, post))])
+        |> put_flash(:info, ["Saved Post! ", link("Preview", to: Routes.post_path(conn, :show, post))])
         |> redirect(to: Routes.admin_dashboard_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> put_flash(:error, "failure couldn't create post")
+        |> put_flash(:error, ["Failed to create post. ", readable_errors(changeset.errors)])
         |> render(:new, changeset: changeset)
     end
   end
@@ -40,11 +40,11 @@ defmodule PhoenixBlogWeb.PostController do
     case Blog.update_post(post, post_params) do
       {:ok, _log} ->
         conn
-        |> put_flash(:info, "Success - Updated a Post!")
+        |> put_flash(:info, ["Updated Post! ", link("Preview", to: Routes.post_path(conn, :show, post))])
         |> render(:edit, changeset: changeset, post: post)
       {:error, changeset} ->
         conn
-        |> put_flash(:error, "failure couldn't create post")
+        |> put_flash(:error, ["Failed to update post. ", readable_errors(changeset.errors)])
         |> render(:edit, changeset: changeset, post: post)
     end
   end
@@ -59,5 +59,10 @@ defmodule PhoenixBlogWeb.PostController do
       |> put_flash(:error, "No post found")
       |> redirect(to: "/posts")
     end
+  end
+
+  defp readable_errors(errors) do
+    Enum.map(errors, fn item ->
+      "#{elem(item, 0)} #{elem(item, 1) |> elem(0)} " end)
   end
 end
