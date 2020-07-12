@@ -9,6 +9,7 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
+    <%= link "About Me", to: Routes.page_path(@conn, :about) %>
     <main role="main" class="container">
       <%= @inner_content %>
     </main>

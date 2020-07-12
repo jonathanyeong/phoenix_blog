@@ -24,6 +24,7 @@ defmodule PhoenixBlogWeb.Router do
     pipe_through :browser
 
     get "/", PostController, :index
+    get "/about", PageController, :about
     resources "/posts", PostController, only: [:show, :index]
   end
 
