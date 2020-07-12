@@ -1,7 +1,7 @@
 <h1><%= @post.title %></h1>
 <strong><%= post_display_date(@post.published_at)%></strong>
 <div>
-  <%= @post.content %>
+  <%= as_html(@post.content) %>
 </div>
 
 <hr />
