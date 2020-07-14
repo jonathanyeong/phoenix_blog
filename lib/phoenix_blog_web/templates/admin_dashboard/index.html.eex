@@ -1,6 +1,6 @@
-<%= link "+ Add new post", to: Routes.admin_post_path(@conn, :new) %>
 <h1>Blog Posts</h1>
-<table>
+<%= link "+ Add new post", to: Routes.admin_post_path(@conn, :new), class: "button" %>
+<table class="blog-post-list">
   <tr>
     <th>Post Title</th>
     <th>Published?</th>
@@ -13,8 +13,8 @@
       <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post) %></td>
       <td><%= post.is_published %></td>
       <td><%= admin_display_date(post.published_at) %></td>
-      <td><%= link "View", to: Routes.post_path(@conn, :show, post) %></td>
-      <td><%= link "Edit", to: Routes.admin_post_path(@conn, :edit, post) %></td>
+      <td><%= link "View", to: Routes.post_path(@conn, :show, post), class: "button button-outline" %></td>
+      <td><%= link "Edit", to: Routes.admin_post_path(@conn, :edit, post), class: "button" %></td>
     </tr>
   <% end %>
 </table>

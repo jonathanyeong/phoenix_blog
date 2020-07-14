@@ -9,14 +9,15 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
+    <div class="main-nav">
+      <span class="logo">
+        <a href="/admin">Admin Dashboard</a>
+      </span>
+      <%= render "_admin_menu.html", assigns %>
+    </div>
     <main role="main" class="container">
-      <header>
-        <%= render "_admin_menu.html", assigns %>
-      </header>
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <h1>Welcome to the admin dashboard!</h1>
       <%= @inner_content %>
     </main>
   </body>
