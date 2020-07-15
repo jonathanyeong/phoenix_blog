@@ -11,6 +11,14 @@
 
     <label for="post_title">Title</label>
     <%= text_input @post, :title %>
+
+    <label for="post_cover_image">Cover image</label>
+    <%= text_input @post, :cover_image, placeholder: "Optional" %>
+    <%= if @post.data.cover_image do %>
+      <div class="cover-image">
+        <img src=<%= @post.data.cover_image %> alt="cover image" />
+      </div>
+    <% end %>
   </fieldset>
 
   <fieldset class="post-content-inputs">
