@@ -25,6 +25,7 @@ defmodule PhoenixBlogWeb.Router do
 
     get "/", PostController, :index
     get "/about", PageController, :about
+    get "/sitemap.xml", SitemapController, :index
     resources "/posts", PostController, only: [:show, :index]
   end
 

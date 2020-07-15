@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc><%= Routes.post_url(@conn, :index) %></loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc><%= Routes.page_url(@conn, :about) %></loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <%= for post <- @posts do %>
+    <url>
+      <loc><%= Routes.post_url(@conn, :show, post) %></loc>
+      <lastmod><%= format_date(post.updated_at) %></lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1</priority>
+    </url>
+  <% end %>
+</urlset>
