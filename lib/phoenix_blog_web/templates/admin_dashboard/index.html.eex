@@ -5,6 +5,7 @@
     <th>Post Title</th>
     <th>Published?</th>
     <th>Published At</th>
+    <th>Created At</th>
     <th>View Post</th>
     <th>Edit Post</th>
   </tr>
@@ -13,6 +14,7 @@
       <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post) %></td>
       <td><%= post.is_published %></td>
       <td><%= admin_display_date(post.published_at) %></td>
+      <td><%= admin_display_date(post.inserted_at) %></td>
       <td><%= link "View", to: Routes.post_path(@conn, :show, post), class: "button button-outline" %></td>
       <td><%= link "Edit", to: Routes.admin_post_path(@conn, :edit, post), class: "button" %></td>
     </tr>

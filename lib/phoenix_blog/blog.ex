@@ -26,7 +26,9 @@ defmodule PhoenixBlog.Blog do
 
   # TODO: Add doc string
   def list_all_posts do
-    Repo.all(Post)
+    Post
+    |> Post.ordered()
+    |> Repo.all()
   end
 
   @doc """
