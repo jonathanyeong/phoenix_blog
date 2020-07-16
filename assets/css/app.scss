@@ -35,3 +35,14 @@
   color: #212529;
   font-size: 1.6rem;
 }
+
+// Copied from Tomorrow Prism theme
+code.inline {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em;
+  color: #ccc;
+  background: #2d2d2d;
+  padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}

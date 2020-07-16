@@ -14,6 +14,8 @@ import "../css/app.scss"
 //
 import "phoenix_html"
 import EasyMDE from "easymde"
+import Prism from "prismjs"
+
 if (document.getElementById("post_content")) {
   var easyMde = new EasyMDE({
     element: document.getElementById("post_content")
