@@ -7,7 +7,12 @@ defmodule PhoenixBlogWeb.PostController do
 
   def index(conn, _params) do
     posts = Blog.list_posts()
-    render(conn, "index.html", posts: posts)
+    ogtags = %{
+      "og:type": "website",
+      "og:site_name": "Jonathan Yeong",
+      "og:title": "Jonathan Yeong Site"
+    }
+    render(conn, "index.html", posts: posts, ogtags: ogtags)
   end
 
   def new(conn, _params) do
@@ -52,8 +57,14 @@ defmodule PhoenixBlogWeb.PostController do
   def show(conn, %{"id" => id} = _params) do
     post = Blog.get_post!(id)
     current_admin = conn.assigns[:current_admin]
+    ogtags = %{
+      "og:type": "article",
+      "og:site_name": "Jonathan Yeong",
+      "og:title": post.title,
+      "og:description": post.content || post.title
+    }
     if post.is_published || current_admin do
-      render(conn, "show.html", post: post)
+      render(conn, "show.html", post: post, ogtags: ogtags)
     else
       conn
       |> put_flash(:error, "No post found")
