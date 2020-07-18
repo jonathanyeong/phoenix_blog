@@ -1,3 +1,5 @@
+![Elixir CI](https://github.com/jonathanyeong/phoenix_blog/workflows/Elixir%20CI/badge.svg)
+
 # Personal blog of Jonathan Yeong
 
 This is my personal blog written in phoenix. It (will) contain an admin dashboard to write and manage posts.
