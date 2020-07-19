@@ -23,7 +23,7 @@ jobs:
         image: postgres:12
         ports: ['5432:5432']
         env:
-          POSTGRES_PASSWORD: localhost
+          POSTGRES_PASSWORD: postgres
         # Set health checks to wait until postgres has started
         # >- ==> starting on new line after dash. Any new lines is
         # concatenated as a single line.
@@ -43,5 +43,5 @@ jobs:
       - run: cd assets && yarn install --frozen-lockfile
       # - run: MIX_ENV=test mix ecto.create
       - run: mix test
-        env:
-          POSTGRES_HOST: localhost
+        # env:
+        #   POSTGRES_HOST: localhost
