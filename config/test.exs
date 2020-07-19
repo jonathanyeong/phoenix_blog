@@ -15,6 +15,12 @@ config :phoenix_blog, PhoenixBlog.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
+# Configure the database for GitHub Actions
+if System.get_env("GITHUB_ACTIONS") do
+  config :phoenix_blog, PhoenixBlog.Repo,
+    username: "postgres",
+    password: "postgres"
+end
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :phoenix_blog, PhoenixBlogWeb.Endpoint,
