@@ -19,11 +19,11 @@ jobs:
     services:
       postgres:
         image: postgres
+        ports: ['5432:5432']
         env:
           POSTGRES_PASSWORD: localhost
           POSTGRES_USER: postgres
           POSTGRES_DB: phoenix_blog_test
-          POSTGRES_PORT: 5432
         # Set health checks to wait until postgres has started
         # >- ==> starting on new line after dash. Any new lines is
         # concatenated as a single line.
@@ -35,8 +35,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Elixir
-        uses: actions/setup-elixir@v1
+      - uses: actions/setup-elixir@v1
         with:
           elixir-version: '1.10.3' # Define the elixir version [required]
           otp-version: '22.3' # Define the OTP version [required]
