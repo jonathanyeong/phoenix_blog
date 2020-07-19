@@ -34,14 +34,15 @@ jobs:
       # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
         uses: actions/checkout@v2
-        with:
-          path: "test_folder"
-
+      - name: List project
+        run: ls
       # Performs a clean installation of all dependencies in the `package.json` file
       # For more information, see https://docs.npmjs.com/cli/ci.html
       - name: Install dependencies
-        run: npm ci
-        working-directory: ./assets
+        run: |
+          cd assets/
+          ls
+          npm ci
 
       - name: Connect to PostgreSQL
         # Runs a script that creates a PostgreSQL client, populates
@@ -53,24 +54,24 @@ jobs:
           POSTGRES_HOST: postgres
           # The default PostgreSQL port
           POSTGRES_PORT: 5432
-  build:
-    name: Build and test
-    runs-on: ubuntu-latest
+  # build:
+  #   name: Build and test
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Elixir
-      uses: actions/setup-elixir@v1
-      with:
-        elixir-version: '1.10.3' # Define the elixir version [required]
-        otp-version: '22.3' # Define the OTP version [required]
-    - name: Restore dependencies cache
-      uses: actions/cache@v2
-      with:
-        path: deps
-        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-        restore-keys: ${{ runner.os }}-mix-
-    - name: Install dependencies
-      run: mix deps.get
-    - name: Run tests
-      run: mix test
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Set up Elixir
+  #     uses: actions/setup-elixir@v1
+  #     with:
+  #       elixir-version: '1.10.3' # Define the elixir version [required]
+  #       otp-version: '22.3' # Define the OTP version [required]
+  #   - name: Restore dependencies cache
+  #     uses: actions/cache@v2
+  #     with:
+  #       path: deps
+  #       key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+  #       restore-keys: ${{ runner.os }}-mix-
+  #   - name: Install dependencies
+  #     run: mix deps.get
+  #   - name: Run tests
+  #     run: mix test
