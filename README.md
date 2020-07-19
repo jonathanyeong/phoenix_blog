@@ -31,3 +31,10 @@ password1234
 After logging in you should be taken to the dashboard to create your posts.
 
 Note: Registration has been removed from the site since it assumes there will only ever be one user making posts.
+
+## Run Tests
+
+```
+mix deps.get
+mix test
+```
