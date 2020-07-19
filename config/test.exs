@@ -10,17 +10,11 @@ config :bcrypt_elixir, :log_rounds, 1
 # Run `mix help test` for more information.
 config :phoenix_blog, PhoenixBlog.Repo,
   username: "postgres",
-  password: "localhost",
+  password: System.get_env("DB_PASSWORD") || "localhost",
   database: "phoenix_blog_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
+  hostname: System.get_env("DB_HOST") || "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-# Configure the database for GitHub Actions
-if System.get_env("GITHUB_ACTIONS") do
-  config :phoenix_blog, PhoenixBlog.Repo,
-    username: "postgres",
-    password: "postgres"
-end
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :phoenix_blog, PhoenixBlogWeb.Endpoint,
