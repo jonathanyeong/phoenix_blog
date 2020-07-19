@@ -10,11 +10,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-tests-job:
+  run-tests:
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: node:10.18-jessie
-
+    container: node:12.18-stretch
+    env:
+      MIX_ENV: test
     services:
       postgres:
         image: postgres
@@ -22,6 +23,7 @@ jobs:
           POSTGRES_PASSWORD: localhost
           POSTGRES_USER: postgres
           POSTGRES_DB: phoenix_blog_test
+          POSTGRES_PORT: 5432
         # Set health checks to wait until postgres has started
         # >- ==> starting on new line after dash. Any new lines is
         # concatenated as a single line.
@@ -32,20 +34,13 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Set up Elixir
         uses: actions/setup-elixir@v1
         with:
           elixir-version: '1.10.3' # Define the elixir version [required]
           otp-version: '22.3' # Define the OTP version [required]
-      - name: Restore dependencies cache
-        uses: actions/cache@v2
-        with:
-          path: deps
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-          restore-keys: ${{ runner.os }}-mix-
-      - name: Install dependencies
-        run: mix deps.get
-      - name: Run tests
-        run: mix test
+      - run: mix deps.get
+      - run: mix deps.compile
+      - run: cd assets && yarn install --frozen-lockfile
+      - run: mix test
