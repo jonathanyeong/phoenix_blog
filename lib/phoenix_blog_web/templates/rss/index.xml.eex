@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+<channel>
+  <title>Jonathan Yeong</title>
+  <link><%= Routes.post_url(@conn, :index) %></link>
+  <description>The writings of Jonathan Yeong</description>
+  <language>en</language>
+  <%= for post <- @posts do %>
+    <item>
+      <title><%= post.title %></title>
+      <link><%= Routes.post_url(@conn, :show, post) %></link>
+      <pubDate><%= format_date(post.updated_at) %></pubDate>
+      <guid><%= Routes.post_url(@conn, :show, post) %></guid>
+      <description><%= (post.content) %></description>
+    </item>
+  <% end %>
+</channel>
+
+</rss>
