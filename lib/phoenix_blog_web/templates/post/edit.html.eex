@@ -3,3 +3,5 @@
 <%= form_for @changeset, Routes.admin_post_path(@conn, :update, @post), fn f -> %>
   <%= render "_post_form.html", conn: @conn, post: f, admin: @current_admin %>
 <% end %>
+
+<%= link "Delete Post", to: Routes.admin_post_path(@conn, :delete, @post), method: :delete, data: [confirm: "Are you sure?"], class: "button button-outline" %>

@@ -20,7 +20,7 @@ defmodule PhoenixBlogWeb.PostController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"post" => post_params} = _params) do
+  def create(conn, %{"post" => post_params}) do
     case Blog.create_post(post_params) do
       {:ok, post} ->
         conn
@@ -33,13 +33,13 @@ defmodule PhoenixBlogWeb.PostController do
     end
   end
 
-  def edit(conn, %{"id" => id} = _params) do
+  def edit(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
     changeset = Blog.change_post(post)
     render(conn, "edit.html", changeset: changeset, post: post)
   end
 
-  def update(conn, %{"post" => post_params, "id" => id} = _params) do
+  def update(conn, %{"post" => post_params, "id" => id}) do
     post = Blog.get_post!(id)
     changeset = Blog.change_post(post, post_params)
     case Blog.update_post(post, post_params) do
@@ -54,7 +54,7 @@ defmodule PhoenixBlogWeb.PostController do
     end
   end
 
-  def show(conn, %{"id" => id} = _params) do
+  def show(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
     current_admin = conn.assigns[:current_admin]
     ogtags = %{
@@ -70,6 +70,22 @@ defmodule PhoenixBlogWeb.PostController do
       |> put_flash(:error, "No post found")
       |> redirect(to: "/posts")
     end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    post = Blog.get_post!(id)
+
+    case Blog.delete_post(post) do
+      {:ok, post} ->
+        conn
+        |> put_flash(:info, ["Post ", post.title, " deleted"])
+        |> redirect(to: Routes.admin_dashboard_path(conn, :index))
+      {:error, post} ->
+        conn
+        |> put_flash(:error, ["Post ", post.title, " could not be deleted"])
+        |> render(:edit, post: post)
+    end
+
   end
 
   defp readable_errors(errors) do

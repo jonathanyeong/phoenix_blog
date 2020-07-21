@@ -65,7 +65,7 @@ defmodule PhoenixBlog.BlogTest do
 
     test "delete_post/1 deletes the post" do
       post = post_fixture()
-      assert post = Blog.delete_post(post)
+      assert {:ok, post} = Blog.delete_post(post)
       assert_raise Ecto.NoResultsError, fn -> Blog.get_post!(post.slug) end
     end
 

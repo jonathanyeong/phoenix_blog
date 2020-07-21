@@ -30,5 +30,5 @@
 <hr />
 <div class="form-buttons">
   <%= submit "Submit!", class: "button" %>
-  <%= link "Back to Dashboard", to: Routes.admin_dashboard_path(@conn, :index), class: "button button-outline"%>
+  <%= link "Back to Dashboard", to: Routes.admin_dashboard_path(@conn, :index), class: "button button-outline" %>
 </div>
