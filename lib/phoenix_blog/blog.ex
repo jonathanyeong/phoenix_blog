@@ -94,10 +94,8 @@ defmodule PhoenixBlog.Blog do
       {:error, ...}
 
   """
-  # TODO: I don't know how I want to handle deletes.
-  # Do I archive, do I remove from the DB...
   def delete_post(%Post{} = post) do
-    raise "TODO"
+    Repo.delete!(post)
   end
 
   @doc """

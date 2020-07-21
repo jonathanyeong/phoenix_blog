@@ -63,12 +63,11 @@ defmodule PhoenixBlog.BlogTest do
       assert post == Blog.get_post!(post.slug)
     end
 
-    # TODO: We are not handling deletes just yet
-    # test "delete_post/1 deletes the post" do
-    #   post = post_fixture()
-    #   assert {:ok, %Post{}} = Blog.delete_post(post)
-    #   assert_raise Ecto.NoResultsError, fn -> Blog.get_post!(post.id) end
-    # end
+    test "delete_post/1 deletes the post" do
+      post = post_fixture()
+      assert post = Blog.delete_post(post)
+      assert_raise Ecto.NoResultsError, fn -> Blog.get_post!(post.slug) end
+    end
 
     test "change_post/1 returns a post changeset" do
       post = post_fixture()

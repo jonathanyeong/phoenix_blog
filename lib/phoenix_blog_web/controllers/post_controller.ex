@@ -43,7 +43,7 @@ defmodule PhoenixBlogWeb.PostController do
     post = Blog.get_post!(id)
     changeset = Blog.change_post(post, post_params)
     case Blog.update_post(post, post_params) do
-      {:ok, _log} ->
+      {:ok, _post} ->
         conn
         |> put_flash(:info, ["Updated Post! ", link("Preview", to: Routes.post_path(conn, :show, post))])
         |> render(:edit, changeset: changeset, post: post)
