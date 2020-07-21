@@ -3,16 +3,17 @@
 
 <channel>
   <title>Jonathan Yeong</title>
+  <copyright>All rights reserved</copyright>
   <link><%= Routes.post_url(@conn, :index) %></link>
   <description>The writings of Jonathan Yeong</description>
   <language>en</language>
   <%= for post <- @posts do %>
     <item>
-      <title><%= post.title %></title>
+      <title><%= post.title |> html_escape() |> safe_to_string() %></title>
       <link><%= Routes.post_url(@conn, :show, post) %></link>
       <pubDate><%= format_date(post.updated_at) %></pubDate>
       <guid><%= Routes.post_url(@conn, :show, post) %></guid>
-      <description><%= (post.content) %></description>
+      <description><![CDATA[<%= SharedHelpers.md_to_html(post.content) |> html_escape() |> safe_to_string() %>]]></description>
     </item>
   <% end %>
 </channel>

@@ -4,7 +4,7 @@
 <h1><%= @post.title %></h1>
 <strong><%= post_display_date(@post.published_at)%></strong>
 <div>
-  <%= as_html(@post.content) %>
+  <%= SharedHelpers.md_to_html(@post.content) %>
 </div>
 
 <hr />
