@@ -1,5 +1,6 @@
 use Mix.Config
 
+config :phoenix_blog, :environment, :dev
 # Configure your database
 config :phoenix_blog, PhoenixBlog.Repo,
   username: "postgres",
