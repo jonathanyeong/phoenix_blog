@@ -9,12 +9,16 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <div class="main-nav">
-      <span class="logo">
-        <a href="/admin">Admin Dashboard</a>
-      </span>
-      <%= render "_admin_menu.html", assigns %>
-    </div>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-2">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <a href="/admin" class="font-semibold text-xl tracking-tight">Admin Dashboard</a>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+        </div>
+        <%= render "_admin_menu.html", assigns %>
+      </div>
+    </nav>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

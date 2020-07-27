@@ -1,7 +1,9 @@
 /* This file is for your main application css. */
-@import "./phoenix.css";
 @import "~easymde/dist/easymde.min.css";
-@import "admin/admin.scss";
+@import "~tailwindcss/dist/base.min.css";
+@import "~tailwindcss/dist/components.min.css";
+@import "~tailwindcss/dist/utilities.min.css";
+
 /* Alerts and form errors */
 .alert {
   padding: 15px;

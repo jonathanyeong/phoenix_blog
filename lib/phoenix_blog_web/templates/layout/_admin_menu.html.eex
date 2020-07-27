@@ -1,9 +1,9 @@
-<ul class="nav-items">
+<ul class="flex">
 <%= if @current_admin do %>
-  <li><%= @current_admin.email %></li>
-  <li><%= link "Settings", to: Routes.admin_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.admin_session_path(@conn, :delete), method: :delete, class: "button" %></li>
+  <li class="flex-auto text-center px-2 py-2 m-2 text-white"><%= @current_admin.email %></li>
+  <li class="flex-auto text-center px-4 py-2 m-2 text-teal-200 hover:text-white"><%= link "Settings", to: Routes.admin_settings_path(@conn, :edit) %></li>
+  <li class="flex-auto text-center px-4 py-2 m-2 border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white"><%= link "Log out", to: Routes.admin_session_path(@conn, :delete), method: :delete, class: "button" %></li>
 <% else %>
-  <li><%= link "Log in", to: Routes.admin_session_path(@conn, :new), class: "button" %></li>
+  <li class="flex-auto text-center px-4 py-2 m-2 border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white"><%= link "Log in", to: Routes.admin_session_path(@conn, :new), class: "button" %></li>
 <% end %>
 </ul>
