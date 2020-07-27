@@ -1,5 +1,5 @@
-<h1>New Blog Post</h1>
+<h1 class="text-5xl mb-4 mt-4">New Blog Post</h1>
 
-<%= form_for @changeset, Routes.admin_post_path(@conn, :create), fn f -> %>
+<%= form_for @changeset, Routes.admin_post_path(@conn, :create), [class: "w-full"], fn f -> %>
   <%= render "_post_form.html", conn: @conn, post: f, admin: @current_admin %>
 <% end %>

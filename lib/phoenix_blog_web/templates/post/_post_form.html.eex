@@ -1,34 +1,46 @@
-<div class="post-form-container">
-  <fieldset class="post-metadata-inputs">
-    <label for="post_is_published">Publish?</label>
+<div class="flex flex-wrap -mx-3 mb-6">
+  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="post_is_published">Publish?</label>
     <%= checkbox @post, :is_published %>
-
-    <label for="post_published_at">Published Date</label>
+  </div>
+  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="post_published_at">Published Date</label>
     <%= datetime_select @post, :published_at, default: current_datetime(@admin) %>
+  </div>
+</div>
 
-    <label for="post_slug">Slug</label>
-    <%= text_input @post, :slug, disabled: true %>
+<div class="flex flex-wrap -mx-3 mb-6">
+  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="post_title">Title</label>
+    <%= text_input @post, :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="post_slug">Slug</label>
+    <%= text_input @post, :slug, disabled: true, class: "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" %>
+  </div>
+</div>
 
-    <label for="post_title">Title</label>
-    <%= text_input @post, :title %>
-
-    <label for="post_cover_image">Cover image</label>
-    <%= text_input @post, :cover_image, placeholder: "Optional" %>
+<div class="flex flex-wrap -mx-3 mb-6">
+  <div class="w-full px-3">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="post_cover_image">Cover image</label>
+    <%= text_input @post, :cover_image, placeholder: "Optional", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     <%= if @post.data.cover_image do %>
       <div class="cover-image">
         <img src=<%= @post.data.cover_image %> alt="cover image" />
       </div>
     <% end %>
-  </fieldset>
+  </div>
+</div>
 
-  <fieldset class="post-content-inputs">
-    <label for="post_content">Content</label>
+<div class="flex flex-wrap -mx-3 mb-6">
+  <div class="w-full px-3">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="post_content">Content</label>
     <%= textarea @post, :content %>
-  </fieldset>
+  </div>
 </div>
 
 <hr />
-<div class="form-buttons">
-  <%= submit "Submit!", class: "button" %>
-  <%= link "Back to Dashboard", to: Routes.admin_dashboard_path(@conn, :index), class: "button button-outline" %>
+<div class="flex items-center mt-6 mb-6">
+  <%= submit "Submit!", class: "bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline" %>
+  <%= link "Back to Dashboard", to: Routes.admin_dashboard_path(@conn, :index), class: "bg-transparent hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-2 px-4 m-2 border border-teal-500 hover:border-transparent rounded" %>
 </div>
