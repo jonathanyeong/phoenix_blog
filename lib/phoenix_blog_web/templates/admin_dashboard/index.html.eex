@@ -1,22 +1,22 @@
-<h1>Blog Posts</h1>
-<%= link "+ Add new post", to: Routes.admin_post_path(@conn, :new), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-<table class="blog-post-list">
-  <tr>
-    <th>Post Title</th>
-    <th>Published?</th>
-    <th>Published At</th>
-    <th>Created At</th>
-    <th>View Post</th>
-    <th>Edit Post</th>
+<h1 class="text-5xl mb-4">Blog Posts</h1>
+<%= link "+ New Post", to: Routes.admin_post_path(@conn, :new), class: "bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block" %>
+<table class="table-auto w-full">
+  <tr class="border-b">
+    <th class="px-4 py-2 text-left">Post Title</th>
+    <th class="px-4 py-2 text-left">Published?</th>
+    <th class="px-4 py-2 text-left">Published At</th>
+    <th class="px-4 py-2 text-left">Created At</th>
+    <th class="px-4 py-2 text-left">View Post</th>
+    <th class="px-4 py-2 text-left">Edit Post</th>
   </tr>
   <%= for post <- @posts do %>
-    <tr>
-      <td><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post) %></td>
-      <td><%= post.is_published %></td>
-      <td><%= admin_display_date(post.published_at) %></td>
-      <td><%= admin_display_date(post.inserted_at) %></td>
-      <td><%= link "View", to: Routes.post_path(@conn, :show, post), class: "button button-outline" %></td>
-      <td><%= link "Edit", to: Routes.admin_post_path(@conn, :edit, post), class: "button" %></td>
+    <tr class="border-b">
+      <td class="px-4 py-5"><%= link post.title, to: Routes.admin_post_path(@conn, :edit, post) %></td>
+      <td class="px-4 py-2"><%= post.is_published %></td>
+      <td class="px-4 py-2"><%= admin_display_date(post.published_at) %></td>
+      <td class="px-4 py-2"><%= admin_display_date(post.inserted_at) %></td>
+      <td class="px-4 py-2"><%= link "View", to: Routes.post_path(@conn, :show, post), class: "bg-transparent hover:bg-teal-500 text-teal-700 hover:text-white py-2 px-4 border border-teal-500 hover:border-transparent rounded" %></td>
+      <td class="px-4 py-2"><%= link "Edit", to: Routes.admin_post_path(@conn, :edit, post), class: "bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded" %></td>
     </tr>
   <% end %>
 </table>
