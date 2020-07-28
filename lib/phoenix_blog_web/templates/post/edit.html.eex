@@ -1,4 +1,4 @@
-<h1>Edit Blog Post</h1>
+<h1 class="text-5xl mb-4 mt-4">Edit Blog Post</h1>
 
 <%= form_for @changeset, Routes.admin_post_path(@conn, :update, @post), fn f -> %>
   <%= render "_post_form.html", conn: @conn, post: f, admin: @current_admin %>
